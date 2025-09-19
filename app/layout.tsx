@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/navbar";
 import { ClerkProvider } from "@clerk/nextjs"
+import ReactQueryClientProvider from "@/components/react-query-client-provider";
 
 export const metadata: Metadata = {
   title: "AI Meal Plans | Simple SaaS Demo",
@@ -20,10 +20,12 @@ export default function RootLayout({
         <body
           className="bg-gray-50 text-gray-900"
         >
-          <NavBar />
-          <div className="max-w-7xl mx-auto pt-16 p-4 min-h-screen">
-            {children}
-          </div>
+          <ReactQueryClientProvider>
+            <NavBar />
+            <div className="max-w-7xl mx-auto pt-16 p-4 min-h-screen">
+              {children}
+            </div>
+          </ReactQueryClientProvider>
         </body>
       </html>
     </ClerkProvider>
